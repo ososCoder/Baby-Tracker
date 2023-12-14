@@ -1,21 +1,25 @@
 import { useEffect } from "react";
 import "./ActionList.css";
 
-export default function ActionsList({ listOfActions }) {
+export default function ActionsList({ listOfActions, today }) {
    // useEffect(() => {
    //     //descarga de datos dende a base de datos
    // }, [])
 
    return (
-          <ul>
-         {listOfActions.map((action, index) => {
-            return (
-               <li key={index}>
-                  <span>{action.time}</span>
-                  <span>{action.action}</span>
-               </li>
-            );
-         })}
-      </ul>
+      <>
+         <p>{today}</p>
+         <ul>
+            {listOfActions.map((el, index) => {
+               return (
+                  <li key={index}>
+                     <span>{el.time}</span>
+                     <span>----</span>
+                     <span>{el.action}</span>
+                  </li>
+               );
+            })}
+         </ul>
+      </>
    );
 }

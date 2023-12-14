@@ -1,11 +1,26 @@
+p {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
 ul {
-    margin: 2rem auto;
+    margin: .5rem auto;
     width: 75%;
     list-style: none;
 }
 
 ul > li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: .5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgb(219, 219, 219);
+    padding: .5rem ;
+}
+
+span {
+    text-align: center;
 }

@@ -6,6 +6,7 @@ import ActionsList from "./ActionsList";
 export default function FormActions() {
    const [babyAction, setBabyAction] = useState("Durmir");
    const [actionTime, setActionTime] = useState("");
+   const [today, setToday] = useState("");
    const [actionsList, setActionsList] = useState([]);
 
    const getCurrentTime = () => {
@@ -17,6 +18,9 @@ export default function FormActions() {
 
    useEffect(() => {
       getCurrentTime();
+
+      const dateToday = new Date().toLocaleDateString('es-ES', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'});
+      setToday(dateToday);
    }, []);
 
    const handleActionChange = (e) => {
@@ -30,8 +34,7 @@ export default function FormActions() {
       e.preventDefault();
       
       confirm(`Vas a engadir a acción ${babyAction} as ${actionTime}`);
-      const today = new Date();
-      const newAction = {today, time: actionTime, action: babyAction};
+      const newAction = { time: actionTime, action: babyAction};
       setActionsList([...actionsList, newAction]);
 
       //conexión coa base de datos
@@ -62,7 +65,7 @@ export default function FormActions() {
             ></input>
             <button type="submit" onClick={handleSubmit}>Aceptar</button>
          </form>
-         <ActionsList listOfActions={actionsList}/>
+         <ActionsList listOfActions={actionsList} today={today}/>
       </>
    );
 }
